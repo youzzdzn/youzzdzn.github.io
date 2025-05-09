@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlemmardIA</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body class="theme-dark">
+
+    <div id="intro-overlay" class="intro-overlay">
+        <div class="intro-text-container">
+            <span class="intro-text-part1">Funny&Creative</span>
+            <span class="intro-text-part2">présente</span>
+        </div>
+    </div>
+
+    <div id="auth-screen" class="auth-screen hidden">
+        <div class="auth-container">
+            <h1 class="auth-title-main">FlemmardIA</h1>
+            <p class="auth-subtitle-main">Prépare-toi à être ignoré.</p>
+            <div id="auth-login-form" class="auth-form">
+                <h2>Connexion</h2>
+                <input type="text" id="login-identifier" placeholder="Nom d'utilisateur ou Email" autocomplete="username">
+                <input type="password" id="login-password" placeholder="Mot de passe" autocomplete="current-password">
+                <button id="login-btn" class="auth-button">Se connecter</button>
+                <p class="auth-error" id="login-error"></p>
+                <p class="auth-switch">Pas encore de compte ? <a href="#" id="show-signup-link">Inscris-toi, feignasse.</a></p>
+            </div>
+            <div id="auth-signup-form" class="auth-form hidden">
+                <h2>Inscription</h2>
+                <input type="text" id="signup-username" placeholder="Nom d'utilisateur (3-20 caractères)" autocomplete="username" maxlength="20">
+                <input type="email" id="signup-email" placeholder="Email" autocomplete="email">
+                <input type="password" id="signup-password" placeholder="Mot de passe (min. 6 caractères)" autocomplete="new-password">
+                <input type="password" id="signup-confirm-password" placeholder="Confirmer le mot de passe" autocomplete="new-password">
+                <button id="signup-btn" class="auth-button">S'inscrire</button>
+                <p class="auth-error" id="signup-error"></p>
+                <p class="auth-switch">Déjà un compte ? <a href="#" id="show-login-link">Connecte-toi, si tu y tiens.</a></p>
+            </div>
+            <div class="auth-separator"><span>OU</span></div>
+            <button id="google-auth-btn" class="auth-button google-btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/640px-Google_%22G%22_logo.svg.png" alt="Google logo" class="google-logo-img">
+                Continuer avec Google (lol, non)
+            </button>
+        </div>
+    </div>
+
+    <div id="settings-panel" class="settings-overlay hidden">
+        <div class="settings-content">
+            <div class="settings-header">
+                <h3>Paramètres de Flemmardise</h3>
+                <button id="close-settings-btn" class="icon-button" title="Fermer"><span class="material-symbols-outlined">close</span></button>
+            </div>
+            <div class="setting-option">
+                <label for="wickedness-level">Niveau de méchanceté :</label>
+                <select id="wickedness-level">
+                    <option value="normal">Normal (juste blasé)</option>
+                    <option value="trash">Trash (extrême)</option>
+                </select>
+            </div>
+            <div id="trash-mode-warning" class="trash-warning hidden">
+                <span class="material-symbols-outlined">warning</span> Attention : Le mode "Trash" contient un langage extrêmement grossier et offensant.
+            </div>
+            <div class="setting-option">
+                <label for="theme-selector">Thème :</label>
+                <select id="theme-selector">
+                    <option value="dark">Sombre (par défaut)</option>
+                    <option value="light">Clair (pour les yeux fragiles)</option>
+                </select>
+            </div>
+            <button id="logout-btn" class="logout-button"><span class="material-symbols-outlined">logout</span> Se déconnecter (et me foutre la paix)</button>
+            <button id="save-settings-btn">Appliquer les changements</button>
+        </div>
+    </div>
+
+    <div id="main-interface" class="initial-view hidden">
+        <header id="chat-header" class="interface-header hidden">
+            <div class="logo-title">
+                <span class="material-symbols-outlined logo-icon">sentiment_very_dissatisfied</span>
+                <h1>FlemmardIA</h1>
+                <span id="current-username-display" class="username-display"></span>
+            </div>
+            <div class="header-actions">
+                <button id="settings-btn" class="icon-button" title="Paramètres"><span class="material-symbols-outlined">settings</span></button>
+                <button id="clear-chat-btn" class="icon-button" title="Effacer la conversation"><span class="material-symbols-outlined">delete_sweep</span></button>
+            </div>
+        </header>
+        <div id="initial-content" class="initial-content-wrapper">
+            <span class="material-symbols-outlined initial-logo">sentiment_very_dissatisfied</span>
+            <h1 class="initial-title-app">FlemmardIA</h1>
+            <p class="initial-subtitle-app">J'écoute... à moitié.</p>
+        </div>
+        <div id="drop-zone-overlay" class="drop-zone-overlay hidden">
+            <div class="drop-zone-text">
+                <span class="material-symbols-outlined">file_upload</span> Relâche tes fichiers ici... si tu y tiens vraiment.
+            </div>
+        </div>
+        <div id="chat-messages" class="messages-area hidden"></div>
+        <footer id="input-area" class="input-area">
+            <button id="media-upload-btn" class="icon-button media-btn hidden" title="Envoyer un média (lol)"><span class="material-symbols-outlined">add_circle_outline</span></button>
+            <input type="file" id="hidden-file-input" style="display: none;" accept="image/*,video/*,audio/*,.pdf,.doc,.docx,.txt" multiple>
+            <input type="text" id="user-input" placeholder="Balance ton truc...">
+            <button id="send-button" class="send-btn" title="Envoyer (si j'ai envie de lire)"><span class="material-symbols-outlined">send</span></button>
+        </footer>
+    </div>
+    <div id="logout-feedback-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
